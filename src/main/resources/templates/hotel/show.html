@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hotel</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+
+    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+
+<!--/*@thymesVar id="recipe" type="itschool.springframework.model.Recipe"*/-->
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="pannel-group">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h1 class="panel-title">General Information</h1>
+                            </div>
+
+                            <div class="col-md-1">
+                                <a class="btn btn-default" href="#"
+                                   th:href="@{'/hotel/' + ${hotel.hotelId} + '/image'}" role="button">Change
+                                    Image</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5></h5>
+                            </div>
+                            <div class="col-md-3">
+
+                            </div>
+                            <div class="col-md-6">
+                                <img th:src="@{image.png}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Town:</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <p th:text="${(hotel.town)}"></p>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>Rooms:</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <p th:text="${hotel.numberOfRooms}"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Meal Plan:</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <p th:text="${(hotel.mealPlan)}"></p>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>Price:</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <p th:text="${hotel.price}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-md-11 ">
+                                <h1 class="panel-title">Facilities:</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h5>Spa:</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <p th:text="${(hotel.spa)}"></p>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Gym:</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <p th:text="${(hotel.gym)}"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h5>Meal Plan:</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <p th:text="${(hotel.mealPlan)}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

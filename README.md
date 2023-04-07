@@ -87,5 +87,4 @@ POST "/user/update/{id}"- updates an existing user identified by the {id} parame
 
 Role:
 
-GET "/get/{roleId}"- r
-eturns the role object for a specific role identified by the {roleId} parameter.
+GET "/get/{roleId}"- returns the role object for a specific role identified by the {roleId} parameter.

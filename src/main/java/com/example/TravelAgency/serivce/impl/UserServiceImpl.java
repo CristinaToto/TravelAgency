@@ -72,7 +72,6 @@ public class UserServiceImpl implements UserService {
     public User update(UpdateUserDto userDto) {
         User user = getById(userDto.getId());
         verifyUserData(userDto);
-
         user.setEmail(userDto.getEmail());
         user.setAddress(userDto.getAddress());
         user.setPhone(userDto.getPhone());
@@ -91,14 +90,15 @@ public class UserServiceImpl implements UserService {
 
 
     private User createUser(CreareUserDto userDto, Role role) {
-        User user = new User();
-        user.setRole(role);
-        user.setPassword(generatePassword());
-        user.setUsername(userDto.getUsername());
-        user.setAddress(userDto.getAddress());
-        user.setPhone(userDto.getPhone());
-        user.setDiscount(userDto.getDiscount());
-        user.setGender(userDto.getGender());
+        User user = User.builder()
+                .role(role)
+                .password(generatePassword())
+                .username(userDto.getUsername())
+                .address(userDto.getAddress())
+                .phone(userDto.getPhone())
+                .discount(userDto.getDiscount())
+                .gender(userDto.getGender())
+                .build();
         return user;
     }
 

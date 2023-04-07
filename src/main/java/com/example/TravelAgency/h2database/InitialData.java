@@ -60,91 +60,98 @@ public class InitialData implements ApplicationListener<ContextRefreshedEvent> {
     }
 
     public List<User> addUsers() {
-
-
-        User user1 = new User();
         Role admin = roleRepository.findById(1L).orElseThrow(() -> new NotFound("Role with id 1 doesn't exist"));
-        user1.setRole(admin);
-        user1.setUsername("Adrian");
-        user1.setPassword(generatePassword());
-        user1.setCnp("1211310345345");
-        user1.setAddress("Timisoara, bld. L. Rebreanu");
-        user1.setPhone("0744478344");
-        user1.setEmail("user1@gmail.com");
-        user1.setGender(Gender.M);
-        user1.setDiscount(Discount.LEVEL1);
+        User user1 = User.builder()
+                .role(admin)
+                .username("Adrian")
+                .password(generatePassword())
+                .cnp("1211310345345")
+                .address("Timisoara, bld. L. Rebreanu")
+                .phone("0744478344")
+                .email("user1@gmail.com")
+                .gender(Gender.M)
+                .discount(Discount.LEVEL1)
+                .build();
 
-        User user2 = new User();
+
         Role travelAgent = roleRepository.findById(2L).orElseThrow(() -> new NotFound("Role with id 2 doesn't exist"));
-        user2.setRole(travelAgent);
-        user2.setUsername("Oana");
-        user2.setPassword(generatePassword());
-        user2.setCnp("2211310345345");
-        user2.setAddress("Craiova, str. Recunostintei");
-        user2.setPhone("0734490344");
-        user2.setEmail("user2@gmail.com");
-        user2.setGender(Gender.F);
-        user2.setDiscount(Discount.LEVEL2);
+        User user2 = User.builder()
+                .role(travelAgent)
+                .username("Oana")
+                .password(generatePassword())
+                .cnp("2211310345345")
+                .address("Craiova, str. Recunostintei")
+                .phone("0734490344")
+                .email("user2@gmail.com")
+                .gender(Gender.F)
+                .discount(Discount.LEVEL2)
+                .build();
 
-        User user3 = new User();
+
         Role client = roleRepository.findById(3L).orElseThrow(() -> new NotFound("Role with id 3 doesn't exist"));
-        user3.setRole(client);
-        user3.setUsername("Cristina");
-        user3.setPassword(generatePassword());
-        user3.setCnp("2211310000876");
-        user3.setAddress("Bucuresti, Calea Victoriei");
-        user3.setPhone("0768490144");
-        user3.setEmail("user3@gmail.com");
-        user3.setGender(Gender.F);
-        user3.setDiscount(Discount.LEVEL3);
+        User user3 = User.builder()
+                .role(client)
+                .username("Cristina")
+                .password(generatePassword())
+                .cnp("2211310345345")
+                .address("Bucuresti, Calea Victoriei")
+                .phone("0768490144")
+                .email("user3@gmail.com")
+                .gender(Gender.F)
+                .discount(Discount.LEVEL3)
+                .build();
 
 
-        User user4 = new User();
         Role hotelEmployee = roleRepository.findById(4L).orElseThrow(() -> new NotFound("Role with id 4 doesn't exist"));
-        user4.setRole(hotelEmployee);
-        user4.setUsername("Miruna");
-        user4.setPassword(generatePassword());
-        user4.setCnp("2211638960876");
-        user4.setAddress("Bucuresti, str. Teilor");
-        user4.setPhone("0755498944");
-        user4.setEmail("user4@gmail.com");
-        user4.setGender(Gender.F);
-        user4.setDiscount(Discount.LEVEL3);
+        User user4 = User.builder()
+                .role(hotelEmployee)
+                .username("Miruna")
+                .password(generatePassword())
+                .cnp("2011638960876")
+                .address("Bucuresti, str. Teilor")
+                .phone("0755498944")
+                .email("user4@gmail.com")
+                .gender(Gender.F)
+                .discount(Discount.LEVEL3)
+                .build();
 
         return List.of(user1, user2, user3, user4);
     }
 
     public List<Hotel> addHotels() {
 
-        Hotel continental = new Hotel();
-        continental.setTown("Bucuresti");
-        continental.setHotelName("Continental");
-        continental.setNumberOfRooms(200L);
-        continental.setMealPlan(MealPlan.ALL_INCLUSIVE);
-        continental.setPrice(170.50);
-        continental.setSpa(true);
-        continental.setGym(true);
-        continental.setTransferHotelToAirport(true);
+        Hotel continental = Hotel.builder()
+                .town("Bucuresti")
+                .hotelName("Continental")
+                .numberOfRooms(200L)
+                .mealPlan(MealPlan.ALL_INCLUSIVE)
+                .price(170.5)
+                .spa(true)
+                .gym(true)
+                .transferHotelToAirport(true)
+                .build();
 
-        Hotel ibis = new Hotel();
-        ibis.setTown("Viena");
-        ibis.setHotelName("Ibis");
-        ibis.setNumberOfRooms(120L);
-        ibis.setMealPlan(MealPlan.BREAKFAST);
-        ibis.setPrice(130.25);
-        ibis.setSpa(false);
-        ibis.setGym(true);
-        ibis.setTransferHotelToAirport(true);
+        Hotel ibis = Hotel.builder()
+                .town("Viena")
+                .hotelName("Ibis")
+                .numberOfRooms(120L)
+                .mealPlan(MealPlan.BREAKFAST)
+                .price(130.25)
+                .spa(false)
+                .gym(true)
+                .transferHotelToAirport(true)
+                .build();
 
-        Hotel sofitel = new Hotel();
-        sofitel.setTown("Paris");
-        sofitel.setHotelName("Sofitel");
-        sofitel.setNumberOfRooms(220L);
-        sofitel.setMealPlan(MealPlan.HALF_BOARD);
-        sofitel.setPrice(200.99);
-        sofitel.setSpa(true);
-        sofitel.setGym(true);
-        sofitel.setTransferHotelToAirport(true);
+        Hotel sofitel = Hotel.builder()
+                .town("Paris")
+                .hotelName("Sofitel")
+                .numberOfRooms(220L)
+                .mealPlan(MealPlan.HALF_BOARD)
+                .price(200.99)
+                .spa(true)
+                .gym(true)
+                .transferHotelToAirport(true)
+                .build();
 
         return List.of(continental, ibis, sofitel);
     }
@@ -157,31 +164,34 @@ public class InitialData implements ApplicationListener<ContextRefreshedEvent> {
         Hotel ibis = hotelRepository.findById(2L).orElseThrow(() -> new NotFound("Hotel with id 2 doesn't exist"));
         User user2 = userRepository.findById(2L).orElseThrow(() -> new NotFound("User with id 2 doesn't exist"));
 
-        Reservation reservation1 = new Reservation();
-        reservation1.setReservationId(1L);
-        reservation1.setUser(user1);
-        reservation1.setHotel(continental);
-        reservation1.setNumberOfRooms(2);
-        reservation1.setNumberOfPersons(3);
-        reservation1.setPrice(200.00);
-        reservation1.setMealPlan(MealPlan.ALL_INCLUSIVE);
-        reservation1.setStartDate(LocalDate.parse("2022-11-22"));
-        reservation1.setEndDate(LocalDate.parse("2022-11-25"));
-        reservation1.setReservationDate(LocalDate.parse("2022-10-22"));
-        reservation1.setExtraPrice(20.00);
+        Reservation reservation1 = Reservation.builder()
+                .reservationId(1L)
+                .user(user1)
+                .hotel(continental)
+                .numberOfRooms(2)
+                .numberOfPersons(3)
+                .price(200.00)
+                .mealPlan(MealPlan.ALL_INCLUSIVE)
+                .startDate(LocalDate.parse("2022-11-22"))
+                .endDate(LocalDate.parse("2022-11-25"))
+                .reservationDate(LocalDate.parse("2022-10-22"))
+                .extraPrice(20.00)
+                .build();
 
-        Reservation reservation2 = new Reservation();
-        reservation2.setReservationId(2L);
-        reservation2.setUser(user2);
-        reservation2.setHotel(ibis);
-        reservation2.setNumberOfRooms(1);
-        reservation2.setNumberOfPersons(2);
-        reservation2.setPrice(150.00);
-        reservation2.setMealPlan(MealPlan.BREAKFAST);
-        reservation2.setStartDate(LocalDate.parse("2022-11-11"));
-        reservation2.setEndDate(LocalDate.parse("2022-11-12"));
-        reservation2.setReservationDate(LocalDate.parse("2022-10-22"));
-        reservation2.setExtraPrice(0.00);
+
+        Reservation reservation2 = Reservation.builder()
+                .reservationId(2L)
+                .user(user2)
+                .hotel(ibis)
+                .numberOfRooms(1)
+                .numberOfPersons(2)
+                .price(150.00)
+                .mealPlan(MealPlan.BREAKFAST)
+                .startDate(LocalDate.parse("2022-11-11"))
+                .endDate(LocalDate.parse("2022-11-12"))
+                .reservationDate(LocalDate.parse("2022-10-22"))
+                .extraPrice(0.00)
+                .build();
 
         return List.of(reservation1, reservation2);
 

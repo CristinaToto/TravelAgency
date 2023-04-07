@@ -51,20 +51,20 @@ public class ReservationServiceImpl implements ReservationService {
 
         User user = userRepository.findById(userId).orElseThrow(() -> new NotFound("User doesn't exist"));
         Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(() -> new NotFound("Hotel doesn't exist"));
-        Reservation reservation1 = new Reservation();
         double price = calculatePrice(reservation, user, hotel);
-        reservation1.setHotel(hotel);
-        reservation1.setNumberOfRooms(reservation.getNumberOfRooms());
-        reservation1.setNumberOfPersons(reservation.getNumberOfPersons());
-        reservation1.setMealPlan(reservation.getMealPlan());
-        reservation1.setStartDate(reservation.getStartDate());
-        reservation1.setEndDate(reservation.getEndDate());
-        reservation1.setCurrency(reservation.getCurrency());
-        reservation1.setUser(user);
-        reservation1.setPrice(price);
-        reservation1.setReservationDate(reservation.getReservationDate());
-        reservation1.setExtraPrice(reservation.getExtraPrice());
-
+        Reservation reservation1 = Reservation.builder()
+                .hotel(hotel)
+                .numberOfRooms(reservation.getNumberOfRooms())
+                .numberOfPersons(reservation.getNumberOfPersons())
+                .mealPlan(reservation.getMealPlan())
+                .startDate(reservation.getStartDate())
+                .endDate(reservation.getEndDate())
+                .currency(reservation.getCurrency())
+                .user(user)
+                .price(price)
+                .reservationDate(reservation.getReservationDate())
+                .extraPrice(reservation.getExtraPrice())
+                .build();
         return reservationRepository.save(reservation1);
     }
 
@@ -72,7 +72,8 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     @Transactional
     public Reservation updateReservation(Reservation reservationDTO) {
-        Reservation reservation = reservationRepository.findById(reservationDTO.getReservationId()).orElseThrow(() -> new NotFound("Reservation doesn't exist"));
+        Reservation reservation = reservationRepository.findById(reservationDTO.getReservationId()).orElseThrow(()
+                -> new NotFound("Reservation doesn't exist"));
         verifyMandatoryFields(reservationDTO);
 
         reservation.setNumberOfRooms(reservationDTO.getNumberOfRooms());

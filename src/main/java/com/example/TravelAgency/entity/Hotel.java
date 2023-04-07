@@ -2,11 +2,14 @@ package com.example.TravelAgency.entity;
 
 import com.example.TravelAgency.enums.MealPlan;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 @Entity
-@Data
+@Getter
+@Setter
+@Builder
 @Table(name = "hotels")
+@AllArgsConstructor
 public class Hotel {
 
 
@@ -15,7 +18,7 @@ public class Hotel {
     private Long hotelId;
 
     @Lob
-    byte[] photo;
+    private byte[] photo;
 
     private String hotelName;
 
@@ -33,4 +36,8 @@ public class Hotel {
     private boolean gym;
 
     private boolean transferHotelToAirport;
+
+    public Hotel() {
+    }
+
 }

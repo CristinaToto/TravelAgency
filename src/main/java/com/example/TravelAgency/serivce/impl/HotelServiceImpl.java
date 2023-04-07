@@ -35,12 +35,13 @@ public class HotelServiceImpl implements HotelService {
     @Transactional
     public Hotel saveHotel(CreateHotelDto hotel) {
         verifyHotelData(hotel);
-        Hotel hotelToSave = new Hotel();
-        hotelToSave.setHotelName(hotel.getHotelName());
-        hotelToSave.setTown(hotel.getTown());
-        hotelToSave.setNumberOfRooms(hotel.getNumberOfRooms());
-        hotelToSave.setMealPlan(hotel.getMealPlan());
-        hotelToSave.setPrice(hotel.getPrice());
+        Hotel hotelToSave = Hotel.builder()
+                .hotelName(hotel.getHotelName())
+                .town(hotel.getTown())
+                .price(hotel.getPrice())
+                .mealPlan(hotel.getMealPlan())
+                .numberOfRooms(hotel.getNumberOfRooms())
+                .build();
         return hotelRepository.save(hotelToSave);
     }
 

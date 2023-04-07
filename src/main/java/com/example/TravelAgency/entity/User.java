@@ -3,10 +3,14 @@ package com.example.TravelAgency.entity;
 import com.example.TravelAgency.enums.Discount;
 import com.example.TravelAgency.enums.Gender;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "users")
 public class User {
 

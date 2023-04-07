@@ -3,6 +3,7 @@ package com.example.TravelAgency.entity;
 import com.example.TravelAgency.enums.RoleType;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Value;
 
 @Entity
 @Data

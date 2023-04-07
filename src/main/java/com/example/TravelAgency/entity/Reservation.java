@@ -3,12 +3,16 @@ package com.example.TravelAgency.entity;
 import com.example.TravelAgency.enums.Currency;
 import com.example.TravelAgency.enums.MealPlan;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "reservations")
 public class Reservation {
 

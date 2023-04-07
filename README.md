@@ -1,8 +1,7 @@
 Table of Contents
 1. About The Project
 2. Main Features
-3. Integrated Services
-4. Built With
+3. Built With
 
 
 
@@ -24,3 +23,15 @@ Manage reservations by creating, updating, or deleting them.
 Manage hotels by creating or updating their information.
 Assign roles to users based on their responsibilities.
 Calculate the discounted price.
+
+Build with
+
+Back end: 
+-Java
+Front end:
+-HTML
+-CSS
+Database:
+-H2 database
+Framework:
+-SpringBoot

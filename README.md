@@ -41,21 +41,21 @@ The SpringBoot application developed by the travel agency is a versatile web-bas
 
 <h2 id="built-with">3. Built With</h2>
 </br>
-**Back end:**
+<b>Back end:</b>
 </br>
 •	Java
 </br>
-**Front end:**
+<b>Front end:</b>
 </br>
 •	HTML
 </br>
 •	CSS
 </br>
-**Database:**
+<b>Database:</b>
 </br>
 •	H2 database
 </br>
-**Framework:**
+<b>Framework:</b>
 </br>
 •	SpringBoot
 </br>
@@ -89,7 +89,6 @@ All users page
 <h2>API documentation:</h2>
 </br>
 <h3>Hotel:</h3>
-</br>
 </br>
 • <b>GET</b> "/getAllHotels": returns a list of all hotels in the database.</br>
 • <b>POST</b> "/save": creates a new hotel with the provided details in the request body.</br>

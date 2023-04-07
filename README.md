@@ -27,26 +27,41 @@
 The SpringBoot application developed by the travel agency is a versatile web-based solution designed to facilitate the booking and management of hotel reservations. The application is programmed in Java and features an HTML and CSS front-end interface. By using this application, users can conveniently search for hotels, access hotel information, and make reservations for their preferred dates.
 
 <h2 id="main-features">2. Main Features</h2>
+</br>
 •	Manage users by creating, updating, or deleting their accounts.
+</br>
 •	Manage reservations by creating, updating, or deleting them.
+</br>
 •	Manage hotels by creating or updating their information.
+</br>
 •	Assign roles to users based on their responsibilities.
+</br>
 •	Calculate the discounted price.
 
 
 <h2 id="built-with">3. Built With</h2>
-Back end:
+</br>
+**Back end:**
+</br>
 •	Java
-Front end:
+</br>
+**Front end:**
+</br>
 •	HTML
+</br>
 •	CSS
-Database:
+</br>
+**Database:**
+</br>
 •	H2 database
-Framework:
+</br>
+**Framework:**
+</br>
 •	SpringBoot
+</br>
 
 
-<h2 id="built-with">3. Built With</h2>
+<h2 id="built-with">4. Visual</h2>
 All reservations page
 
 ![Screenshot 2023-04-07 193317](https://user-images.githubusercontent.com/116298533/230644874-748d5643-bd4f-49e4-8aa7-ad46ea4914ac.png)
@@ -71,7 +86,7 @@ All users page
 
 ![Screenshot 2023-04-07 193553](https://user-images.githubusercontent.com/116298533/230644871-4341827f-5b5b-4fb8-bded-f6b35f83bde4.png)
 
-API documentation:</br>
+<h2>API documentation:</h2>
 </br>
 <h3>Hotel:</h3>
 </br>

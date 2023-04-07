@@ -10,6 +10,7 @@ import lombok.*;
 @Builder
 @Table(name = "hotels")
 @AllArgsConstructor
+@NoArgsConstructor
 public class Hotel {
 
 
@@ -36,8 +37,5 @@ public class Hotel {
     private boolean gym;
 
     private boolean transferHotelToAirport;
-
-    public Hotel() {
-    }
 
 }

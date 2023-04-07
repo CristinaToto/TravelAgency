@@ -3,17 +3,15 @@ package com.example.TravelAgency.controller;
 import com.example.TravelAgency.dto.CreateHotelDto;
 import com.example.TravelAgency.serivce.impl.HotelServiceImpl;
 import com.example.TravelAgency.entity.Hotel;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequiredArgsConstructor
 public class HotelController {
     private final HotelServiceImpl hotelService;
-
-    public HotelController(HotelServiceImpl hotelService) {
-        this.hotelService = hotelService;
-    }
 
 
     @GetMapping("/getAllHotels")

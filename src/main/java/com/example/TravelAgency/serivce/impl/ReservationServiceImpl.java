@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import static com.example.TravelAgency.enums.Discount.*;
 import static java.util.Objects.isNull;
 
 @Service
@@ -48,23 +49,10 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     @Transactional
     public Reservation createReservation(Reservation reservation, Long userId, Long hotelId) {
-
         User user = userRepository.findById(userId).orElseThrow(() -> new NotFound("User doesn't exist"));
         Hotel hotel = hotelRepository.findById(hotelId).orElseThrow(() -> new NotFound("Hotel doesn't exist"));
         double price = calculatePrice(reservation, user, hotel);
-        Reservation reservation1 = Reservation.builder()
-                .hotel(hotel)
-                .numberOfRooms(reservation.getNumberOfRooms())
-                .numberOfPersons(reservation.getNumberOfPersons())
-                .mealPlan(reservation.getMealPlan())
-                .startDate(reservation.getStartDate())
-                .endDate(reservation.getEndDate())
-                .currency(reservation.getCurrency())
-                .user(user)
-                .price(price)
-                .reservationDate(reservation.getReservationDate())
-                .extraPrice(reservation.getExtraPrice())
-                .build();
+        Reservation reservation1 = buildReservation(reservation, user, hotel, price);
         return reservationRepository.save(reservation1);
     }
 
@@ -75,7 +63,6 @@ public class ReservationServiceImpl implements ReservationService {
         Reservation reservation = reservationRepository.findById(reservationDTO.getReservationId()).orElseThrow(()
                 -> new NotFound("Reservation doesn't exist"));
         verifyMandatoryFields(reservationDTO);
-
         reservation.setNumberOfRooms(reservationDTO.getNumberOfRooms());
         reservation.setNumberOfPersons(reservationDTO.getNumberOfPersons());
         reservation.setPrice(reservationDTO.getNumberOfRooms() * reservation.getHotel().getPrice());
@@ -85,16 +72,6 @@ public class ReservationServiceImpl implements ReservationService {
         reservation.setExtraPrice(reservationDTO.getExtraPrice());
 
         return reservationRepository.save(reservation);
-    }
-
-    private void verifyMandatoryFields(Reservation reservationDTO) {
-        if (isNull(reservationDTO.getHotel())) {
-            throw new IllegalArgumentException("Hotel cannot be found");
-        }
-        if (isNull(reservationDTO.getUser())) {
-            throw new IllegalArgumentException("User cannot be found");
-        }
-
     }
 
     @Override
@@ -116,11 +93,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public Double getTotalPriceForUser(Long userId) {
         Set<Reservation> reservations = new HashSet<>(getReservationsByUserId(userId));
-        Double totalPrice = 0.0;
-        for (Reservation currentReservation : reservations) {
-            totalPrice += currentReservation.getPrice();
-        }
-        return totalPrice;
+        return reservations.stream().mapToDouble(Reservation::getPrice).sum();
     }
 
     @Override
@@ -135,25 +108,55 @@ public class ReservationServiceImpl implements ReservationService {
         long nights = ChronoUnit.DAYS.between(reservation.getStartDate(), reservation.getEndDate());
         double price = reservation.getNumberOfRooms()
                 * calculatePriceWithDiscount(hotel.getPrice(), user.getDiscount()) * nights;
+        return convertPriceInCurrency(reservation, price);
+    }
 
-        if (reservation.getCurrency() != null && reservation.getCurrency().equals(Currency.USD)) {
+    private double convertPriceInCurrency(Reservation reservation, double price) {
+        Currency currency = reservation.getCurrency();
+        if (currency.equals(Currency.USD)) {
             price = price * 1.05;
         }
-        if (reservation.getCurrency() != null && reservation.getCurrency().equals(Currency.RON)) {
+        if (currency.equals(Currency.RON)) {
             price = price * 4.93;
         }
         return price;
     }
 
     public double calculatePriceWithDiscount(double hotelPrice, Discount discount) {
-        double finalPrice = hotelPrice;
-        if (discount == Discount.LEVEL1) {
-            finalPrice = finalPrice * 0.9;
-        } else if (discount == Discount.LEVEL2) {
-            finalPrice = finalPrice * 0.85;
-        } else if (discount == Discount.LEVEL3) {
-            finalPrice = finalPrice * 0.8;
+        if (discount == LEVEL1) {
+            hotelPrice = hotelPrice * 0.9;
+        } else if (discount == LEVEL2) {
+            hotelPrice = hotelPrice * 0.85;
+        } else if (discount == LEVEL3) {
+            hotelPrice = hotelPrice * 0.8;
         }
-        return finalPrice;
+        return hotelPrice;
     }
+
+    private void verifyMandatoryFields(Reservation reservationDTO) {
+        if (isNull(reservationDTO.getHotel())) {
+            throw new IllegalArgumentException("Hotel cannot be found");
+        }
+        if (isNull(reservationDTO.getUser())) {
+            throw new IllegalArgumentException("User cannot be found");
+        }
+
+    }
+
+    private Reservation buildReservation(Reservation reservation, User user, Hotel hotel, double price) {
+        return Reservation.builder()
+                .hotel(hotel)
+                .numberOfRooms(reservation.getNumberOfRooms())
+                .numberOfPersons(reservation.getNumberOfPersons())
+                .mealPlan(reservation.getMealPlan())
+                .startDate(reservation.getStartDate())
+                .endDate(reservation.getEndDate())
+                .currency(reservation.getCurrency())
+                .user(user)
+                .price(price)
+                .reservationDate(reservation.getReservationDate())
+                .extraPrice(reservation.getExtraPrice())
+                .build();
+    }
+
 }

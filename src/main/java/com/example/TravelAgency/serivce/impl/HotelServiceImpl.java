@@ -45,7 +45,7 @@ public class HotelServiceImpl implements HotelService {
         return hotelRepository.save(hotelToSave);
     }
 
-    public void verifyHotelData(CreateHotelDto hotel) {
+    private void verifyHotelData(CreateHotelDto hotel) {
         if (isNull(hotel.getHotelName()) || hotel.getHotelName().isBlank()) {
             throw new IllegalArgumentException("Hotel name is mandatory!");
         }

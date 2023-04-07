@@ -1,16 +1,21 @@
 package com.example.TravelAgency.dto;
 
 import com.example.TravelAgency.enums.MealPlan;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class CreateHotelDto {
 
-    private String hotelName;
-    private String town;
-    private Long numberOfRooms;
-    private MealPlan mealPlan;
-    private Double price;
+
+    String hotelName;
+
+    String town;
+
+    Long numberOfRooms;
+
+    MealPlan mealPlan;
+
+    Double price;
 
 
 }

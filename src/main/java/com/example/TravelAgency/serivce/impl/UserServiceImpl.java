@@ -90,7 +90,7 @@ public class UserServiceImpl implements UserService {
 
 
     private User createUser(CreareUserDto userDto, Role role) {
-        User user = User.builder()
+        return User.builder()
                 .role(role)
                 .password(generatePassword())
                 .username(userDto.getUsername())
@@ -99,7 +99,6 @@ public class UserServiceImpl implements UserService {
                 .discount(userDto.getDiscount())
                 .gender(userDto.getGender())
                 .build();
-        return user;
     }
 
     private void verifyCNP(String cnp) {

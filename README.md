@@ -24,7 +24,7 @@
     </table>
 
 <h2 id="about-the-project">1. About The Project</h2>
-The SpringBoot application developed by the travel agency is a versatile web-based solution designed to facilitate the booking and management of hotel reservations. The application is programmed in Java and features an HTML and CSS front-end interface. By using this application, users can conveniently search for hotels, access hotel information, and make reservations for their preferred dates.
+The travel agency is a SpringBoot application that serves as a flexible online solution to simplify the process of booking and managing hotel reservations. The application is developed using Java and has a front-end interface based on HTML and CSS. By using this application, users can conveniently search for hotels, access hotel information, and make reservations for their preferred dates.
 
 <h2 id="main-features">2. Main Features</h2>
 </br>
